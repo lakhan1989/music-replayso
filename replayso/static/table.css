@@ -1,0 +1,48 @@
+.track-table{
+    width: 100%;
+    margin: auto;
+}
+.rohit{
+    width: 10%;
+}
+td{
+ margin: 0;
+ padding: 0; 
+}
+.td-style{
+    width: 3%;
+    
+}
+.td-hedding{
+    width: 30%;
+}
+.money-man{
+    color: gray;
+    font-size: 13px;
+}
+.td-numeric{
+    color: gray;
+    font-size: 13px;
+}
+.play-tb{
+    font-size: 17px;
+}
+.rite{
+    font-size: 17px;
+    
+}
+.vert{
+    font-size: 17px;
+}
+tr:hover{
+    background-color:rgba(150, 155, 160, 0.1);
+}
+.table-number{
+    width: 20px;
+}
+.table{
+    border-spacing: 0;
+}
+tr, td{
+    padding: 9px;
+}

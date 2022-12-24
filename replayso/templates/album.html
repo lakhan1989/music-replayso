@@ -1,0 +1,126 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}Home{% endblock %}
+{% block body %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'replayso.css' %}">
+{% endblock %}
+
+    
+    <hr class="header-hr">
+    <div class="main-section-wrap">
+        <div class="main-section-div">
+            <div>
+                <img class="girl-with-star" src="{{ album.cover.url }}" alt="" />
+            </div>
+
+            <div class="lucid-main-div">
+                <h3 class="lucid-h3">{{ album.title }}</h3>
+                <a class="banks-a" href="">{{ album.artist.artist_name }}</a>
+                <div class="musicon-main-div">
+                    <img class="musicon" src="{{ album.artist.picture.url }}" alt="" />
+  
+                    <p class="bullet">&bull;</p>
+                    <a class="easy-listening-a" href="">Easy Listening</a>
+                    <p class="bullet">&bull;</p>
+                    <p class="album">Album</p>
+                    <p class="bullet">&bull;</p>
+                    <p class="album">{{ tracks.count }} Tracks</p> 
+                    <p class="bullet">&bull;</p>
+                    <p class="album">{{ album.release_date }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="play-button-div1">
+            <div class="play-wrapper">
+                <button class="lucid-play-button">
+                    <span class="material-symbols-outlined play-icon"> play_arrow </span> Play
+                </button>
+            </div>
+            <div class="play-button-div icon-style-r">
+                <p>205</p>  
+                <!-- <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="like">
+                    <button type="submit"> -->
+                    <span class="material-symbols-outlined icon-style-r">
+                        favorite
+                    </span>
+                   <!-- </button> -->
+                    <p>{{ album.likes }}</p>
+                </form>
+                <span class="material-symbols-outlined icon-style-r"> more_vert </span>
+            </div>
+        </div>
+
+
+        <div>
+            <table class="track-table">
+                <tbody>
+                {% for x in tracks %}
+                    <div class="rohit"> 
+                    <tr>
+                        <td class="td-numeric table-number">{{forloop.counter}}</td>
+                        <td  class="td-hedding">{{ x.title }}</td>
+                        {% for artist in x.artist.all %}  
+                           <td><a style="text-decoration: none;" href="{% url 'artist' artist.id %}"><p class="para55 lucid">{{ artist.artist_name }}</p></a></td>
+                            {% endfor %}
+                        
+                        <td class="td-style td-numeric"><span class="material-symbols-outlined">
+                           <span class="play-tb">play_arrow</span> 
+                            </span></td>
+                        <td class="td-style td-numeric">{{ x.plays }}</td>
+                        <td class="td-style"><span class="material-symbols-outlined">
+                           <span class="rite"> favorite </span>
+                            </span></td>
+                        <td class="td-style"><span class="material-symbols-outlined">
+                           <span class="vert"> more_vert</span>
+                            </span></td> 
+                    </tr>
+                </div>
+                {% endfor %}
+                    
+                </tbody>
+            </table>
+        </div>
+        
+  
+        <p class="grid-hedding">More from Musicon</p>
+        <div class="musicon-more">
+            {% for x in arti %}
+            <div>
+                <img src="{{ x.cover.url }}" alt="" />
+                <p class="more-musicon-h5">{{ x.title }} </p>
+                <p class="musicon-sec-p"> {{ x.artist }} </p>
+            </div>
+            {% endfor %}
+            
+        </div>
+
+
+
+
+
+        <p class="grid-hedding">Similar</p>
+        <div class="musicon-more">
+        {% for x in all_albums %}
+            <div>
+                <a href="{% url 'album' x.id %}"><img src="{{ x.cover.url }}" alt="" /></a>
+                <p class="more-musicon-h5">{{ x.title }} </p>
+                
+        <a style="text-decoration: none;" href="{% url 'artist' x.artist.id %}"><p class="para55 lucid">{{ x.artist.artist_name }}</p></a>
+ 
+            </div>
+            {% endfor %}
+             
+        </div>
+
+ 
+
+
+    </div>
+   
+    
+
+{% endblock %}

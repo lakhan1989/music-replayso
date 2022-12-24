@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     
+    <div >
+        <div><h1 >Artists</h1></div>
+        <div style="display: flex;">
+        
+            <div class="card" style="width: 18rem; padding: 20px; margin: 10px;">
+            <img style="width: 300px;" src="{{ artist.picture.url }}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Name: {{ artist.artist_name }}</h5>
+              <p class="card-text">Description: {{ artist.description }}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Listeners: {{ artist.listeners }}</li>
+              <li class="list-group-item">Genre: {{ artist.genre }}</li>
+           
+            </ul>
+            
+            </div>
+      
+    </div>
+    </div>
+
+
+
+    <div >
+
+    <div><h1 >Featured Albums</h1></div>
+    <div style="display: flex;">
+    {% for x in all_albums %}
+        <div class="card" style="width: 18rem; padding: 20px; margin: 10px;">
+       <a href="{% url 'album' x.id %}"><img src="{{ x.cover.url }}" class="card-img-top" alt="..."></a> 
+        <div class="card-body">
+          <h5 class="card-title">Title: {{ x.title }}</h5>
+          <p class="card-text">Description: {{ x.description }}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Likes: {{ x.likes }}</li>
+          <li class="list-group-item">Release Date: {{ x.release_date }}</li>
+          <a href="{% url 'artist' x.id %}"><li class="list-group-item">Artist: {{ x.artist }}</li></a>
+  
+          {% for y in x.genre.all %}
+            
+                <li class="list-group-item">{{ y.genre_name }}</li>
+
+          {% endfor %}
+             
+        </ul>
+        
+        </div>
+    {% endfor %}
+</div>
+</div>
+ 
+
+
+<div >
+    <div><h1 >Tracks</h1></div>
+    <div class="row">
+    {% for x in all_tracks %}
+    <div class="col-md">
+        <div class="card col-md" style="width: 350px; padding: 20px; margin: 10px;">
+        <img src="{{ x.cover.url }}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Title: {{ x.title }}</h5>
+          <p class="card-text">Album: {{ x.album }}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Time: {{ x.time }}</li>
+          <li class="list-group-item">Likes: {{ x.likes }}</li>
+          <li class="list-group-item">Plays: {{ x.plays }}</li>
+          <li class="list-group-item">Release Date: {{ x.release_date }}</li>
+          <li class="list-group-item">Artist: {{ x.artist }}</li>
+  
+          {% for y in featured %}
+          <li class="list-group-item">{{ y.genre }}</li>
+          {% endfor %}
+        </ul>
+        
+        </div>
+    </div> 
+    {% endfor %}
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+.main-recommended-wraper{
+    display: grid;
+    column-gap: 30px;
+    row-gap: 15px;
+    grid-template-columns: 3fr 3fr 3fr;
+    align-items: center;
+}
+.second-grid-div{
+    display: flex;
+    width: 100%;
+    align-items: center; 
+}
+.grid-img-songs{
+    width: 3rem;
+    height: 3rem;
+}
+.tyu{
+    margin: 10px;
+    width: 100%;
+}
+.grid-h1{
+    text-decoration: none;
+    color: black;
+}
+.p-anchor{
+    margin-bottom: 0;
+    margin-top: 5px;
+    font-size: .8125rem;
+}
+.flex{
+    display: flex;
+    align-items: center;
+}
+.color{
+    color:gray;
+    font-size: 12px;
+    margin: 5px;
+}
+.more-icon{
+    margin: 5px;
+}
+.Recommended-p{
+    
+    font-size: 1.2rem;
+    font-weight:600 ;
+}
+.main{
+    margin: 15px 20px;
+}

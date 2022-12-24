@@ -1,0 +1,169 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}Home{% endblock %}
+{% block body %}
+
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'replayso.css' %}">
+<link rel="stylesheet" href="{% static 'index.css' %}">
+{% endblock %}
+
+
+    <div>
+     <h3 class="top- feature">Featured</h3>
+    <div class="home-main-div1 feature">
+
+      {% for x in featured %}
+      <div>
+        <p class="margin-zero">{{ x.title }}</p>
+        <a style="text-decoration: none;" href="{% url 'artist' x.artist.id %}"><p class="dug-rico margin-zero">{{ x.artist.artist_name }}</p></a>
+        <a href ="{% url 'album' x.id %}"><img class="home-grid1-img" src="{{ x.cover.url }}" alt=""></a>
+      </div>
+      {% endfor %}
+
+     
+    </div>
+    <!-- <p>grid-2</p> -->
+     <h3 class="feature">New album</h3>
+    <div class="grid-main-div feature">
+      {% for x in new_albums %}
+        <div>
+         <a href = "{% url 'album' x.id %}"><img class="grid-img-5" src="{{ x.cover.url }}" alt =""></a>
+         <p class="lucid"> {{ x.title }}</p>
+         <a style="text-decoration: none;" href="{% url 'artist' x.artist.id %}"><p class="para55 lucid">{{ x.artist.artist_name }}</p></a>
+        </div>
+        {% endfor %}
+ 
+ </div>
+
+       <!-- Recommended grid -->
+    <div class="main">
+        <p class="Recommended-p">Recommended for you</p>
+        <div class="main-recommended-wraper">
+          <!-- first grid -->
+            {% for x in recommend %}
+            <div class="second-grid-div">
+              <img
+                class="grid-img-songs"
+                src="{{ x.cover.url }}"
+                alt=""
+              />
+              <div class="tyu">
+                <a class="grid-h1" href="">{{ x.title }}</a>
+                <p class="p-anchor"><a class="grid-anchor" href="{{ x.artist }}"></a></p>
+              </div>
+              <div class="flex">
+                <span class="material-symbols-outlined play-icon"
+                  ><span class="play">play_arrow</span>
+                </span>
+                <p class="color">{{ x.plays }}</p>
+                <span class="material-symbols-outlined favourite-icon"
+                  >favorite</span
+                >
+                <p class="color">{{ x.likes }}</p>
+                <span class="material-symbols-outlined more-icon">more_vert</span>
+              </div>
+
+            </div>
+            {% endfor %}
+
+        
+      </div>
+  
+      <style>
+        .material-symbols-outlined {
+          font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+        }
+      </style>
+      <style>
+        .play-icon {
+          font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
+        }
+      </style>
+      <style>
+        .more-icon {
+          font-variation-settings: "FILL" 1, "wght" 1000, "GRAD" 0, "opsz" 48;
+        }
+      </style>
+  
+  <!-- <p>grid-3</p> -->
+  <h3>Weekly top playlists</h3>
+  <div class="grid-main-div">
+    {% for x in top_tracks %}  
+    <div>
+       <img class="grid-img-5 " src="{{ x.cover.url }}" alt="">
+       <p class="lucid"> {{ x.title }}</p>
+       <a style="text-decoration: none;" href="{% url 'album' x.album.id %}"><p class="para55 lucid">{{ x.album.title }}</p></a>
+        
+      </div>
+      {% endfor %}
+
+         
+      
+ 
+</div>
+ <!-- <p>grid-4</p> -->
+ <h3>New music</h3>
+<div class="grid-main-div">
+  {% for x in new_music %}
+     <div>
+      <img class="grid-img-5" src="{{ x.cover.url }}" alt="">
+      <p class="lucid"> {{ x.title }} </p>
+
+      {% for artist in x.artist.all %}  
+      <a style="text-decoration: none;" href="{% url 'artist' artist.id %}"><p class="para55 lucid">{{ artist.artist_name }}</p></a>
+      {% endfor %}
+      
+     </div>
+  {% endfor %}
+      
+</div>
+       
+
+<!-- <p>grid-6</p> -->
+<h3>New Pop Album</h3>
+<div class="home-grid6">
+  {% for x in pop_albums %}
+    <div>
+        <a href = "{% url 'album' x.id %}"><img class="home-grid-img-6" src="{{ x.cover.url }}" alt=""></a>
+        <p class="lucid">{{ x.title }}</p>
+        <a style="text-decoration: none;" href="{% url 'artist' x.artist.id %}"><p class="para55 lucid">{{ x.artist.artist_name }}</p></a>
+ 
+
+    </div>
+  {% endfor %}
+</div>    
+
+
+          <!-- <p>grid-7</p> -->
+          <h3> New Rock Tracks </h3>
+          <div class="grid-main-div">
+            {% for x in rock_songs %}
+            <div>
+             <img class="grid-img-5" src="{{ x.cover.url }}" alt="">
+             <p class="lucid"> {{ x.title }} </p>
+             <a style="text-decoration: none;" href="{% url 'album' x.album.id %}"><p class="para55 lucid">{{ x.album.title }}</p></a>
+             
+            </div>
+            {% endfor %}
+               
+             
+       
+          
+           </div>
+       <!-- <p>home-last-grid8</p> -->
+            <h3 class="grid-8-genres">Genres</h3>
+           <div class="home-last-grid">
+            {% for x in genres %}  
+            <div>
+                 <p class="last-grid-item">{{x.genre_name}}</p>
+              </div>
+              {% endfor %}
+                     
+            </div>
+           </div>
+</div>
+
+
+{% endblock %}

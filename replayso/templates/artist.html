@@ -1,0 +1,91 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}Home{% endblock %}
+{% block body %}
+
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'header.css' %}">
+<link rel="stylesheet" href="{% static 'replayso.css' %}">
+{% endblock %}
+
+ 
+   <hr class="ar-hr">
+    <div class="all-div-wrapper">
+    <div class="artist-main-div1">
+         <div class="flex-main-div">
+               <img class="flex-img1" src="{{ artist.picture.url }}" alt="">
+         </div>
+            <div class="artist-main-div2">
+     <h1 class="main-heading"> {{ artist.artist_name }} </h1>
+    
+     <p class="rr"> {{ artist.description }} <a class="show-more" href="">Show more</a> </p>
+
+                 <div class="icon-content"> 
+                    <div class="play-wrapper"> 
+                    <span class="material-symbols-outlined play-icon">
+                        play_arrow
+                        </span>
+                    </div>
+                    <p class="icon-margin fourty"> {{ artist.listeners }} </p>
+
+                    {% for x in artist.genre.all %}
+                    <p class="icon-margin fourty"> {{ x.genre_name }} </p>
+                    {% endfor %}
+
+                    <button class="follow-btn icon-margin">Follow</button>
+                    <div class="ico-div icon-margin">
+                <span class="material-symbols-outlined icon-cursor"><span class="icon--in-style">language</span> </span>
+        <span class="material-symbols-outlined "><span class="icon--in-style">upload</span> </span>
+           <span class="material-symbols-outlined "><span class="icon--in-style"> link </span></span>
+          <span class="material-symbols-outlined "> <span class="icon--in-style"> score </span></span>
+  <span class="material-symbols-outlined "><span class="icon--in-style more-vert"> more_vert </span>
+  </span>
+                    </div>
+                 </div>
+                
+            </div>   
+    </div>
+    <div class="saction-stations-to-following">
+        <div class="display-flex">
+            <p class="all-para-content">Stations</p>
+            <p class="display-flex-para">379</p>
+        </div>
+        <div class="display-flex">
+           <p class="all-para-content">Albums</p>
+           <p class="display-flex-para" >5</p> 
+        </div>
+           <div class="display-flex">
+             <p class="all-para-content">Likes</p>
+             <p class="display-flex-para">13</p>
+           </div>
+           <div class="display-flex">
+             <p class="all-para-content">Followers</p>
+             <p class="display-flex-para">12</p>
+           </div>
+           <div class="display-flex">
+            <p class="all-para-content">Following</p>
+           </div>
+         </div>
+         <hr class="first-hr">
+    <!-- <p>grid section</p> -->
+    <div class="grid-main-div">
+      {% for x in all_albums %}
+      <div>
+
+       <a href="{% url 'album' x.id %}"><img class="grid-img-5" src="{{ x.cover.url }}" alt=""></a>
+       <p class="lucid"> {{ x.title }} </p>
+       <p class="para55 lucid"> {{ x.artist }} </p>
+      </div>
+ {% endfor %}
+              
+            
+    </div>
+</div>
+         
+        </div>
+
+   
+
+            
+{% endblock %}

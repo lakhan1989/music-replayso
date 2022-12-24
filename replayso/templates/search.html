@@ -1,0 +1,77 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}Search{% endblock %}
+{% block body %}
+
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'header.css' %}">
+<link rel="stylesheet" href="{% static 'replayso.css' %}">
+{% endblock %}
+
+{% if search_album %}
+<!-- <p>grid-2</p> -->
+<h3 class="feature">Artist</h3>
+<div class="grid-main-div feature">
+    {% for x in search_artist %}
+    <div>
+        <a href = "{% url 'artist' x.id %}"><img class="grid-img-5" src="{{ x.picture.url }}" alt =""></a>
+        <p class="lucid"> {{ x.artist_name }}</p> 
+    </div>
+    {% endfor %}
+    
+</div>
+{% else %}
+<h1 style="text-align: center">No Results Found!</h1>
+{% endif %}
+{% if search_album %}
+<!-- <p>grid-2</p> -->
+<h3 class="feature">Album</h3>
+<div class="grid-main-div feature">
+    {% for x in search_album %}
+    <div>
+        <a href = "{% url 'album' x.id %}"><img class="grid-img-5" src="{{ x.cover.url }}" alt =""></a>
+        <p class="lucid"> {{ x.title }}</p>
+        <a style="text-decoration: none;" href="{% url 'artist' x.artist.id %}"><p class="para55 lucid">{{ x.artist.artist_name }}</p></a>
+    </div>
+    {% endfor %}
+    
+</div>
+{% endif %}
+{% if search_track %}
+
+<h3 class="feature">Traks</h3> 
+<div class="main-recommended-wraper">
+  <!-- first grid -->
+    {% for x in search_track %}
+    <div class="second-grid-div" style="padding: 20px;">
+      <img
+        class="grid-img-songs"
+        src="{{ x.cover.url }}"
+        alt=""
+      />
+      <div class="tyu">
+        <a class="grid-h1" href="">{{ x.title }}</a>
+        <p class="p-anchor"><a class="grid-anchor" href="{{ x.artist }}"></a></p>
+      </div>
+      <div class="flex">
+        <span class="material-symbols-outlined play-icon"
+          ><span class="play">play_arrow</span>
+        </span>
+        <p class="color">{{ x.plays }}</p>
+        <span class="material-symbols-outlined favourite-icon"
+          >favorite</span
+        >
+        <p class="color">{{ x.likes }}</p>
+        <span class="material-symbols-outlined more-icon">more_vert</span>
+      </div>
+
+    </div>
+    {% endfor %}
+
+
+</div>
+{% endif %}
+
+
+{% endblock %}

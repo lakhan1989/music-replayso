@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}login{% endblock %}
+{% block body %}
+
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'replayso.css' %}">
+{% endblock %}
+
+            <div class="main-sign-up">
+            <h3 class="creat-h1">Log in</h3>
+       <div class="creat">
+        <p class="alerdy-p">Already have an account?</p>
+       <a class="sign-in-anchor" href="{% url 'signup' %}"> Sign up</a>
+       </div>
+       <div style="width:100%">
+       <form method="post"> 
+         {% csrf_token %}
+
+            <p class="form-group"action=alert style="color: red; font-size: 11px; text-decoration:underline;">{{error}}</p>
+            <p class="main-content">Username</p>
+            <input class="input-username" type="text" name = "username">
+            <p class="main-content">Password</p>
+            <input class="input-username" type="password" name="password">
+            <p><button class="creat-account-button" type="submit">Log in</button></p> 
+            
+            
+        </form>
+    </div>
+    </div>
+{% endblock %}

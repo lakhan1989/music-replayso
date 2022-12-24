@@ -1,0 +1,108 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}{% endblock %}</title>
+
+{% block css %}{% endblock %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    
+
+<link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+
+
+
+
+
+        
+<link rel="stylesheet" href="{% static 'index.css' %}">
+<link rel="stylesheet" href="{% static 'replaysor.css' %}">
+<link rel="stylesheet" href="{% static 'table.css' %}">
+</head>
+<body>
+    
+    <div class="header-input-type">
+        <h3><a class="banks-a" href="/home/">Replayso</a></h3>
+        {% if request.user.is_authenticated %}
+        <form method="post" action="/search/">
+            {% csrf_token %}
+            <div class="input-type-div">
+ 
+                <span class="material-symbols-outlined search-input"> search</span>
+                <div>
+                    <input class="header-input" type="text" placeholder="Search...." name="search"/>
+                </div>
+                <button class="header-signup-button" type="submit">Search</button>
+            </div>
+         </form>
+         {% endif %}
+
+
+
+        <div class="user">
+            <div>
+                {% if request.user.is_authenticated %}
+                <p>{{ request.user }}</p>
+                {% else %}
+                <a href="{% url 'login' %}"><button class="header-login-button">Login</button></a>
+                {% endif %}
+        </div>
+
+        <div>
+            {% if request.user.is_authenticated %}
+            <form method="POST" action="/logout/">
+              {% csrf_token %}
+              <input type="hidden" name="logout" />
+              <button class="header-signup-button" type="submit">Logout</button>
+            </form>
+            {% else %}
+            <a href="{% url 'signup' %}"><button class="header-signup-button">Sign up</button></a>
+           
+          {% endif %}
+        </div>
+ 
+
+        </div>
+    </div>
+
+{% block body %}
+{% endblock %}
+
+<div class="artist-footer">
+    <div class="footer-content">
+   <p class="footer-para-c"> @ Copyright 2022 Music Theme. All Rights Reserved</p>
+   <p class="footer-ser">Service Terms • Music Policy • Cookie Warnings • Support • Feedback</p>
+</div>
+</div>
+
+
+{% block js %}{% endblock %}
+    
+</body>
+</html>
+
+
+
+
+

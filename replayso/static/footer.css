@@ -1,0 +1,16 @@
+.footer-para-c{
+    font-size: 11px;
+    color: gray;
+}
+.footer-ser{
+    font-size: 11px;
+}
+.artist-footer{
+    background-color: rgb(252, 247, 247);
+    width: 100%;
+    height: 100%;
+}
+.footer-content{
+   margin-left: 40px;
+   padding: 20px;
+}
